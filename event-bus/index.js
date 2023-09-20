@@ -7,16 +7,32 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+const events = [];
+
 app.post('/events', (req, res) => {
     const event = req.body;
 
-    axios.post('http://localhost:4000/events',event); //posts 
-    axios.post('http://localhost:4001/events',event); //comments
-    axios.post('http://localhost:4002/events',event); //query
-    axios.post('http://localhost:4003/events',event); //moderation 
+    events.push(event);
+
+    axios.post('http://localhost:4000/events',event).catch((err) => {
+        console.log(err.message);
+    }); //posts 
+    axios.post('http://localhost:4001/events',event).catch((err) => {
+        console.log(err.message);
+    }); //comments
+    axios.post('http://localhost:4002/events',event).catch((err) => {
+        console.log(err.message);
+    }); //query
+    axios.post('http://localhost:4003/events',event).catch((err) => {
+        console.log(err.message)
+    }); //moderation 
 
     res.send({ status: 'OK'})
 
+})
+
+app.get('/events', (req,res) => {
+    res.send(events);
 })
 
 app.listen(4005, () => {
