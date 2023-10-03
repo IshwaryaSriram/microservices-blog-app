@@ -14,16 +14,16 @@ app.post('/events', (req, res) => {
 
     events.push(event);
 
-    axios.post('http://localhost:4000/events',event).catch((err) => {
+    axios.post('http://posts-cluster-ip-serv:4000/events',event).catch((err) => {
         console.log(err.message);
     }); //posts 
-    axios.post('http://localhost:4001/events',event).catch((err) => {
+    axios.post('http://comments-cluster-ip-serv:4001/events',event).catch((err) => {
         console.log(err.message);
     }); //comments
-    axios.post('http://localhost:4002/events',event).catch((err) => {
+    axios.post('http://query-cluster-ip-serv:4002/events',event).catch((err) => {
         console.log(err.message);
     }); //query
-    axios.post('http://localhost:4003/events',event).catch((err) => {
+    axios.post('http://moderation-cluster-ip-serv:4003/events',event).catch((err) => {
         console.log(err.message)
     }); //moderation 
 
