@@ -1,0 +1,15 @@
+Adding the steps that are used to manually trigger the build/deploy when changes are made
+
+1. Rebuild docker image:
+    a) docker build -t dockerid/imagename .
+    b) docker push dockerid/imagename
+
+2. Build the deployment (if it doesnt exist)
+    Ensure that the .yaml file looks for the latest version 
+    a) kubectl apply -f depl-file.yaml
+
+3. If the deployment is already running
+    a) kubectl rollout restart deployment depl-name
+
+
+
